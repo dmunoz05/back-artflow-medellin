@@ -1,16 +1,16 @@
-import express from "express";
-import dotenv from "dotenv";
-import cors from "cors";
-import { routes } from "./src/routes/routes.js"
 import getConnection from "./src/database/connection.mysql.js"
-dotenv.config();
+import { routes } from "./src/routes/routes.js"
+import bodyParser from 'body-parser';
+import express from "express";
+import cors from 'cors';
 
 const PORT = process.env.PORT || 3000;
-// const API_URL = process.env.API_URL || "/test/server/v1";
 
 const app = express();
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json());
+app.use(bodyParser.json({ limit: '10mb' }));
+
 
 const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://example.com"] : ["http://localhost:1600", "http://localhost:5173", "http://localhost:5174"]
 
@@ -27,7 +27,7 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions))
-app.use("/test/server/v1", routes());
+app.use("/server/v1", routes());
 
 // API Working
 app.get("/", (req, res) => {
@@ -52,7 +52,7 @@ app.listen(PORT, async () => {
         console.log("╠════════════════════════════════════════════════════════╣");
         console.log("║    Servicio iniciado en:                               ║");
         console.log("║                                                        ║");
-        console.log(`║    http://localhost:${PORT}/test/server/v1             ║`);
+        console.log(`║    http://localhost:${PORT}/server/v1                     ║`);
         console.log("╚════════════════════════════════════════════════════════╝\n");
     }
 });

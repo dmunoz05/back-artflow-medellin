@@ -1,6 +1,6 @@
 import connectionMysql from "../config/database.js"
 
-let poll = null
+let pool = null
 
 const getConnection = async () => {
     try {

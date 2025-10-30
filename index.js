@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(bodyParser.json({ limit: '10mb' }));
 
 
-const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://example.com"] : ["http://localhost:1600", "http://localhost:5173", "http://localhost:5174"]
+const allowedOrigins = process.env.NODE_ENV === "production" ? ["https://front-artflow-medellin.vercel.app"] : ["http://localhost:1600", "http://localhost:5173", "http://localhost:5174"]
 
 const corsOptions = {
     origin: function (origin, callback) {

@@ -20,7 +20,7 @@ export const getAllGallery = async (req, res) => {
 // Guardar imagen en la galería
 export const saveImageGallery = async (req, res) => {
     try {
-        const { artist_name, title, description, username } = req.body;
+        const { name_user, title, description, username } = req.body;
         const imageFile = req.file;
 
         if (!imageFile) {
@@ -40,12 +40,12 @@ export const saveImageGallery = async (req, res) => {
         const db = variablesDB.data_base;
 
         const query = `
-        INSERT INTO ${db}.artworks (artist_name, title, description, username, image_base64, created_at)
+        INSERT INTO ${db}.artworks (name_user, title, description, username, image_base64, created_at)
         VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP());
         `;
 
         const insert = await conn.query(query, [
-            artist_name,
+            name_user,
             title,
             description,
             username,
